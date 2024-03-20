@@ -1,5 +1,4 @@
 package com.shopping;
-
 import com.shopping.Products.*;
 
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ public class App {
 
     private static final UserAuthenticator authenticator = new UserAuthenticator();
     private static final CartManager cartManager = CartManager.getInstance();
+    @SuppressWarnings("unused")
     private static final Logger logger = new Logger();
     private static final List<Product> availableProducts = new ArrayList<>();
     private static final Scanner scanner = new Scanner(System.in);
@@ -148,7 +148,7 @@ public class App {
                 System.out.println(product.getDescription() + " - $" + product.getPrice())
         );
         System.out.println("Total Price: $" + cartManager.getTotalPrice());
-        System.out.println("\nClearing the cart...");
+        System.out.println("\nItem Purchased...");
         cartManager.clearCart();
         System.out.println("Cart cleared.");
     }

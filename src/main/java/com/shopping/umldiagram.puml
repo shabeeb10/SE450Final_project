@@ -1,0 +1,76 @@
+@startuml umldiagram
+!theme plain
+
+interface Product {
+    + getDescription() : String
+    + getPrice() : double
+    + getId() : Object
+}
+
+class Logger {
+    + log(message : String) : void
+}
+
+class ProductCatalog {
+    - products : List<Product>
+    + addProduct(product : Product) : void
+    + getProducts() : List<Product>
+}
+
+class UserAuthenticator {
+    - users : Map<String, String>
+    + login(username : String, password : String) : boolean
+    + register(username : String, password : String) : boolean
+}
+
+class CartManager {
+    - instance : CartManager
+    - cartItems : List<Product>
+    + getInstance() : CartManager
+    + addProduct(product : Product) : void
+    + removeProduct(productId : String) : boolean
+    + clearCart() : void
+    + getCartItems() : List<Product>
+    + getTotalPrice() : double
+}
+
+class ProductFactory {
+    + createProduct(type : String, id : String, description : String, price : double) : Product
+}
+
+class App {
+    - authenticator : UserAuthenticator
+    - cartManager : CartManager
+    - logger : Logger
+    - availableProducts : List<Product>
+    - scanner : Scanner
+}
+
+class PaymentProcessor {
+    - logger : Logger
+    + processPayment(amount : double, paymentDetails : PaymentDetails) : boolean
+}
+
+class PaymentDetails {
+    - paymentMethod : String
+    - accountDetails : String
+    + isValid() : boolean
+}
+
+App --> UserAuthenticator
+App --> CartManager
+App --> Logger
+App --> ProductFactory
+App .down.> Product : creates >
+App --> ProductCatalog
+CartManager --> Product : contains
+PaymentProcessor --> Logger
+
+Product <|-- Books
+Product <|-- Electronics
+Product <|-- Clothing
+Product <|-- FoodItems
+Product <|-- Toys
+Product <|-- HomeAppliances
+
+@enduml
