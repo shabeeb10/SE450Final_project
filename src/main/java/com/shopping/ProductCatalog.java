@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCatalog {
-    private List<Product1> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
-    public void addProduct(Product1 product) {
+    public void addProduct(Product product) {
         products.add(product);
     }
 
-    public List<Product1> getProducts() { return products; }
+    public List<Product> getProducts() { return products; }
 }
